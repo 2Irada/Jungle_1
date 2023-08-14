@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         // Initialization Data        
-        playerState = 0;
         isGameOver = false;
         playerRb = GetComponent<Rigidbody2D>();
         playerEyeRenderer.color = Color.white;
@@ -86,27 +85,24 @@ public class PlayerController : MonoBehaviour
 
     void PlayerSkill()
     {
-        // if Player Input Num, change playerState and Color
+        // if Player Input Num, change colorCount and Color
         if(colorCount == 1)
         {
-            playerState = 1;
-            GameManager.Instance.ObjectActive(playerState);
+            GameManager.Instance.ObjectActive(colorCount);
             playerEyeRenderer.color = new Color(255 / 255f, 201 / 255f, 201 / 255f);
             groundRenderer.color = new Color(255/255f, 201/255f, 201/255f);
         }
 
         else if (colorCount == 2)
         {
-            playerState = 2;
-            GameManager.Instance.ObjectActive(playerState);
+            GameManager.Instance.ObjectActive(colorCount);
             playerEyeRenderer.color = new Color(85 / 255f, 166 / 255f, 255 / 255f);
             groundRenderer.color = new Color(85 / 255f, 166/ 255f, 255/ 255f);
         }
 
         else if (colorCount == 3)
         {
-            playerState = 3;
-            GameManager.Instance.ObjectActive(playerState);
+            GameManager.Instance.ObjectActive(colorCount);
             playerEyeRenderer.color = new Color(255 / 255f, 252 / 255f, 143 / 255f);
             groundRenderer.color = new Color(255 / 255f, 252 / 255f, 143 / 255f);
         }
@@ -142,8 +138,8 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Destroy"))
         {
-            GameOver();
-            gameObject.SetActive(false);
+            //GameOver();
+            //gameObject.SetActive(false);
             Debug.Log("GameOver");
         }
 
