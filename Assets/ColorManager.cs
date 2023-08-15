@@ -15,6 +15,7 @@ public class ColorManager : MonoBehaviour
     public Color green;
 
     public delegate void MainColoringChanged();
+    public MainColoringChanged mainColoringChanged;
 
     #region Monobehavior Methods
     private void Awake()
@@ -39,21 +40,8 @@ public class ColorManager : MonoBehaviour
     public void SwitchMainColoring(Coloring targetColoring)
     {
         mainColoring = targetColoring;
-        switch (targetColoring)
-        {
-            case Coloring.Red:
-                Camera.main.backgroundColor = red;
-                break;
-            case Coloring.Yellow:
-                Camera.main.backgroundColor = yellow;
-                break;
-            case Coloring.Green:
-                Camera.main.backgroundColor = green;
-                break;
-            default:
-                Debug.LogError("Trying to change main color to black.");
-                break;
-        }
+        Camera.main.backgroundColor = GetColorByColoring(targetColoring);
+        mainColoringChanged?.Invoke();
     }
 
     /// <summary>
@@ -67,6 +55,11 @@ public class ColorManager : MonoBehaviour
         else if (mainColoring == Coloring.Green) { SwitchMainColoring(Coloring.Red); }
     }
 
+    /// <summary>
+    /// 컬러링에 대응되는 실제 Color 값을 가져옴.
+    /// </summary>
+    /// <param name="coloring"></param>
+    /// <returns></returns>
     public Color GetColorByColoring(Coloring coloring)
     {
         switch (coloring)
