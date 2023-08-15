@@ -27,7 +27,7 @@ public class ColorManager : MonoBehaviour
         //디버그용
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            AutoSwitchMainColoring();
+        //    AutoSwitchMainColoring();
         }
     }
     #endregion
