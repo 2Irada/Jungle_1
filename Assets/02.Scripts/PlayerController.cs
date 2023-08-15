@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private SpriteRenderer headColor;
+    [SerializeField] private LayerMask platformLayerMask;
 
+    public BoxCollider2D groundChecker;
 
     private bool isGameEnd;
     private bool isGround;
@@ -29,14 +30,16 @@ public class PlayerController : MonoBehaviour
     {
         jumpCount = 0;
         rigid = GetComponent<Rigidbody2D>();
-        
+        jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics2D.gravity.y * rigid.gravityScale));
     }
 
     // Update is called once per frame
     void Update()
     {
+        isGround = isGrounded();
+
         if (!isGameEnd) PlayerAct();
-        jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics2D.gravity.y * rigid.gravityScale));
+        
     }
     #endregion
 
@@ -50,12 +53,10 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJump)
         {
-            if(!isJump) ColorManager.instance.AutoSwitchMainColoring();
+            ColorManager.instance.AutoSwitchMainColoring();
             rigid.velocity = Vector2.zero;
             rigid.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-
-            if (!isGround) jumpCount++;
-
+            isJump = true;
         }
     }
 
@@ -67,22 +68,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGround = true;
-            isJump = false;
-            Debug.Log("JumpReset");
-            jumpCount = 0;
-        }
-    }
+
     void OnCollisionExit2D(Collision2D collision)
     { // check to player Fall, use OnCollisionExit
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGround = false;
-            isJump = true;
             jumpCount++;
         }
     }
@@ -94,7 +84,7 @@ public class PlayerController : MonoBehaviour
             if (!isGround)
             {
                 isJump = false;
-                jumpCount--;
+                jumpCount = 0;
             }       
             other.gameObject.SetActive(false);
 
@@ -109,5 +99,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   
+    bool isGrounded()
+    {
+        float extraHeightText = .2f;
+        RaycastHit2D rayCastHit = Physics2D.Raycast(groundChecker.bounds.center, Vector2.down, groundChecker.bounds.extents.y + extraHeightText, platformLayerMask);
+        Color rayColor;
+          
+        if(rayCastHit.collider != null)
+        {
+            jumpCount = 0;
+            rayColor = Color.green;
+        }
+        else
+        {
+            if (isJump)
+            { 
+                jumpCount++;
+                isJump = false;
+            }
+            rayColor = Color.red;
+        }
+
+        Debug.DrawRay(groundChecker.bounds.center, Vector2.down * (groundChecker.bounds.extents.y + extraHeightText), rayColor);
+        Debug.Log(rayCastHit.collider);
+        return rayCastHit.collider != null;
+    }
 }
