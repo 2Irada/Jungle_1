@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JellyManager : MonoBehaviour
+public class JellyShooter : MonoBehaviour
 {
-    public float aimRadius;
+    public JellyData data;
 
     Coloring jellyColoring = Coloring.Red;
 
