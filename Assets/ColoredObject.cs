@@ -41,12 +41,14 @@ public class ColoredObject : MonoBehaviour
     {
         //필요: 젤리 시각 효과
         GetComponent<Collider2D>().enabled = false;
+        _isJellied = true;
     }
 
     public void GetUnjellied()
     {
         //필요: 젤리 없어지는 시각 효과
         GetComponent<Collider2D>().enabled = true;
+        _isJellied = false;
     }
 
     /// <summary>
@@ -54,6 +56,8 @@ public class ColoredObject : MonoBehaviour
     /// </summary>
     void UpdateColoringLogic()
     {
+        if (_isJellied) return;
+
         if (ColorManager.instance.mainColoring != objectColoring) 
         {
             GetComponent<Collider2D>().enabled = true; 
