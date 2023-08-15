@@ -20,10 +20,20 @@ public class ColoredObject : MonoBehaviour
         currentColoring = originalColoring;
         GetComponent<SpriteRenderer>().color = ColorManager.instance.GetColorByColoring(originalColoring);
     }
-
+    /// <summary>
+    /// 이 오브젝트를 젤리가 뒤덮음.
+    /// </summary>
+    /// <param name="jellyColoring"></param>
     public void GetJellied(Coloring jellyColoring)
     {
         currentColoring = jellyColoring;
         //필요: 젤리 시각 효과
+    }
+    /// <summary>
+    /// 메인 컬러링에 따라 
+    /// </summary>
+    void UpdateByMainColoring()
+    {
+
     }
 }

@@ -24,6 +24,7 @@ public class ColorManager : MonoBehaviour
 
     private void Update()
     {
+        //디버그용
         if (Input.GetKeyDown(KeyCode.Space))
         {
             AutoSwitchMainColoring();
@@ -31,6 +32,10 @@ public class ColorManager : MonoBehaviour
     }
     #endregion
 
+    /// <summary>
+    /// 메인 컬러링을 변경. 메인 컬러링은 이 함수를 통해서만 변경할 것.
+    /// </summary>
+    /// <param name="targetColoring"></param>
     public void SwitchMainColoring(Coloring targetColoring)
     {
         mainColoring = targetColoring;
@@ -51,6 +56,9 @@ public class ColorManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 다음 색으로 메인 컬리링을 변경
+    /// </summary>
     public void AutoSwitchMainColoring()
     {
         if (mainColoring == Coloring.Black) { SwitchMainColoring(Coloring.Red); }
