@@ -7,4 +7,5 @@ public class JellyData : ScriptableObject
 {
     public float aimRadius;
     public float jellySpreadTime;
+    public float jellyBulletSpeed;
 }

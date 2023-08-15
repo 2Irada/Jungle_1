@@ -29,6 +29,7 @@ public class ColoredObject : MonoBehaviour
     /// </summary>
     private void InitializeColoring()
     {
+
         GetComponent<SpriteRenderer>().color = ColorManager.instance.GetColorByColoring(objectColoring);
         UpdateColoringLogic();
     }
@@ -39,15 +40,12 @@ public class ColoredObject : MonoBehaviour
     /// <param name="jellyColoring"></param>
     public void GetJellied(Coloring jellyColoring)
     {
-        //필요: 젤리 시각 효과
-        GetComponent<Collider2D>().enabled = false;
         _isJellied = true;
     }
 
     public void GetUnjellied()
     {
         //필요: 젤리 없어지는 시각 효과
-        GetComponent<Collider2D>().enabled = true;
         _isJellied = false;
     }
 
@@ -56,15 +54,17 @@ public class ColoredObject : MonoBehaviour
     /// </summary>
     void UpdateColoringLogic()
     {
-        if (_isJellied) return;
-
-        if (ColorManager.instance.mainColoring != objectColoring) 
+        Coloring currentColoring = objectColoring;
+    if (_isJellied) currentColoring = FindObjectOfType<JellyShooter>().jellyColoring;
+        if (ColorManager.instance.mainColoring != currentColoring)
         {
-            GetComponent<Collider2D>().enabled = true; 
+            GetComponent<Collider2D>().enabled = true;
+            GetComponent<SpriteRenderer>().enabled = true;
         }
-        else 
+        else
         {
             GetComponent<Collider2D>().enabled = false;
+            GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 }
