@@ -6,6 +6,8 @@ public class ColoredObject : MonoBehaviour
 {
     public Coloring objectColoring = new Coloring();
 
+    private bool _isJellied = false;
+
     private void Start()
     {
         InitializeColoring();
