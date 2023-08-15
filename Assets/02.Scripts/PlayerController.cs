@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private SpriteRenderer headColor;
+
+
     private bool isGameEnd;
     private bool isGround;
     private Rigidbody2D rigid;
