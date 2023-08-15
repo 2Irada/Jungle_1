@@ -16,7 +16,7 @@ public class ColoredObject : MonoBehaviour
 
     private void OnEnable()
     {
-        ColorManager.instance.mainColoringChanged += UpdateColoringLogic;
+        FindObjectOfType<ColorManager>().mainColoringChanged += UpdateColoringLogic;
     }
 
     private void OnDisable()

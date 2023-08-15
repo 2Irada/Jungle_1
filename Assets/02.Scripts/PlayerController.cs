@@ -8,21 +8,29 @@ public class PlayerController : MonoBehaviour
 
     public BoxCollider2D groundChecker;
 
+    #region GameEndVariable
     private bool isGameEnd;
-    private bool isGround;
+    [SerializeField] private float fdt;
+    [SerializeField] private float gameEndFdt;
+    #endregion
+   
     private Rigidbody2D rigid;
 
     private float horInput;
     [SerializeField] private float playerSpeed;
 
-    #region PlayerJump
-    [SerializeField]private bool isJump;
+    #region PlayerJumpVariable
+    private bool isGround;
+    [SerializeField] private bool isJump;
 
     [SerializeField] private float jumpHeight;
     [SerializeField] private int maxJump;
     private float jumpForce;
     [SerializeField] private int jumpCount;
     #endregion
+
+    [SerializeField] private Camera gameOverCamera;
+    [SerializeField] private GameObject gameOverObj;
 
     #region MonoBehaviour Method
     // Start is called before the first frame update
@@ -35,23 +43,27 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {        
         isGround = isGrounded();
 
-        if (!isGameEnd) PlayerAct();
+        if (!isGround) fdt += Time.deltaTime;
         
+        CheckGameOver();
+      
+        if (!isGameEnd) PlayerAct();
+
     }
     #endregion
 
     void PlayerAct()
-    {
+    {   // check Player Act     
         PlayerJump();
         PlayerMove();
     }
 
     void PlayerJump()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJump)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJump)
         {
             ColorManager.instance.AutoSwitchMainColoring();
             rigid.velocity = Vector2.zero;
@@ -73,19 +85,20 @@ public class PlayerController : MonoBehaviour
     { // check to player Fall, use OnCollisionExit
         if (collision.gameObject.CompareTag("Ground"))
         {
+            isJump = true;
             jumpCount++;
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Item"))
+        if (other.gameObject.CompareTag("Item"))
         {
             if (!isGround)
             {
                 isJump = false;
                 jumpCount = 0;
-            }       
+            }
             other.gameObject.SetActive(false);
 
             StartCoroutine(ResetItem());
@@ -103,25 +116,31 @@ public class PlayerController : MonoBehaviour
     {
         float extraHeightText = .2f;
         RaycastHit2D rayCastHit = Physics2D.Raycast(groundChecker.bounds.center, Vector2.down, groundChecker.bounds.extents.y + extraHeightText, platformLayerMask);
-        Color rayColor;
-          
-        if(rayCastHit.collider != null)
+
+        if (rayCastHit.collider != null)
         {
+            fdt = 0;
             jumpCount = 0;
-            rayColor = Color.green;
         }
         else
         {
             if (isJump)
-            { 
+            {
                 jumpCount++;
                 isJump = false;
             }
-            rayColor = Color.red;
         }
 
-        Debug.DrawRay(groundChecker.bounds.center, Vector2.down * (groundChecker.bounds.extents.y + extraHeightText), rayColor);
-        Debug.Log(rayCastHit.collider);
         return rayCastHit.collider != null;
+    }
+
+    void CheckGameOver()
+    {
+        if(fdt > gameEndFdt)
+        {
+            isGameEnd = true;
+            gameOverCamera.gameObject.SetActive(true);
+            gameOverObj.SetActive(true);
+        }
     }
 }
