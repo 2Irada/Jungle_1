@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class JellyManager : MonoBehaviour
 {
+    public float aimRadius;
+
     Coloring jellyColoring = Coloring.Red;
 
     private ColoredObject jelliedObject = null;
