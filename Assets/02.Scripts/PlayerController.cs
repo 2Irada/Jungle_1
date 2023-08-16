@@ -151,6 +151,7 @@ public class PlayerController : MonoBehaviour
         if(fdt > gameEndFdt)
         {
             isGameEnd = true;
+            UIManager.instance._isGameEnd = true;
             gameOverCamera.gameObject.SetActive(true);
             gameOverObj.SetActive(true);
         }
