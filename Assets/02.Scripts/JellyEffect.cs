@@ -9,6 +9,9 @@ public class JellyEffect : MonoBehaviour
     public GameObject effectObject;
     public SpriteRenderer jellyEffectFront;
     public SpriteRenderer jellyEffectBack;
+    public GameObject jellyEyeBlinkObject;
+
+
     private SpriteMask _platformMask;
     private JellyShooter _jellyShooter;
     private IEnumerator _jellyEffectCoroutine;
@@ -78,12 +81,17 @@ public class JellyEffect : MonoBehaviour
         }
         effectObject.transform.localScale = Vector3.one * _maxEffectScale;
         _jellyShooter.JellifyComplete(targetPlatform.GetComponent<ColoredObject>());
+
+        //yield return new WaitForSeconds(1f);
+
+        StartJellyEyeBlinkEffect(targetPlatform);
     }
 
     IEnumerator StartUnjellifyCoroutine(Vector2 endingPoint)
     {
         float _timer = data.jellySpreadTime;
         effectObject.transform.position = endingPoint;
+        StopJellyEyeBlinkEffect();
 
         while (_timer > 0)
         {
@@ -93,7 +101,6 @@ public class JellyEffect : MonoBehaviour
         }
         _platformMask.enabled = false;
         _jellyShooter.UnjellifyComplete();
-
     }
 
     void UpdateJellyEffectVisibleness()
@@ -110,5 +117,17 @@ public class JellyEffect : MonoBehaviour
             jellyEffectFront.sortingOrder = 100;
             jellyEffectBack.sortingOrder = -100;
         }
+    }
+
+    void StartJellyEyeBlinkEffect(Transform target)
+    {
+        jellyEyeBlinkObject.transform.position = new Vector3(target.position.x, target.position.y - 0.1f, -2);
+        jellyEyeBlinkObject.transform.parent = target;
+        jellyEyeBlinkObject.SetActive(true);
+    }
+
+    void StopJellyEyeBlinkEffect()
+    {
+        jellyEyeBlinkObject.SetActive(false);
     }
 }

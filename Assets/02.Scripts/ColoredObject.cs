@@ -5,6 +5,7 @@ using UnityEngine;
 public class ColoredObject : MonoBehaviour
 {
     public Coloring objectColoring = new Coloring();
+    public Coloring currentColoring = new Coloring();
     public GameObject eyeballObject;
     public bool startAsEyeball;
     [HideInInspector] public bool isEyeball;
@@ -19,6 +20,7 @@ public class ColoredObject : MonoBehaviour
     }
     private void Start()
     {
+        GetComponent<Collider2D>().enabled = true;
         InitializeColoring();
         InitEyeball();
     }
@@ -65,11 +67,11 @@ public class ColoredObject : MonoBehaviour
     /// </summary>
     void UpdateColoringLogic()
     {
-        Coloring currentColoring = _isJellied? FindObjectOfType<JellyShooter>().jellyColoring : objectColoring;
+        currentColoring = _isJellied? FindObjectOfType<JellyShooter>().jellyColoring : objectColoring;
 
         if (ColorManager.instance.mainColoring != currentColoring) 
         {
-            GetComponent<Collider2D>().enabled = true;
+            GetComponent<Collider2D>().isTrigger = false;
             if (_isJellied)
             {
                 SetActiveLineRenderer(true);
@@ -83,7 +85,7 @@ public class ColoredObject : MonoBehaviour
         }
         else
         {
-            GetComponent<Collider2D>().enabled = false;
+            GetComponent<Collider2D>().isTrigger = true;
             SetActiveLineRenderer(true);
             GetComponent<SpriteRenderer>().enabled = false;
         }
@@ -127,10 +129,8 @@ public class ColoredObject : MonoBehaviour
     {
         if (isEyeball == false) return;
 
-        //´«±ò ±×·¡ÇÈ ¹ÝÅõ¸í ÄÚ·çÆ¾ ½ÃÀÛ
-        
-
-
+        //´«±ò ¾ø¾Ö±â
+        eyeballObject.SetActive(false);
     }
 
     public void JellyLeavesEyeball()
@@ -138,7 +138,6 @@ public class ColoredObject : MonoBehaviour
         if (isEyeball == false) return;
 
         isEyeball = false;
-        eyeballObject.SetActive(false);
     }
 
     IEnumerator StartEyeballFade()

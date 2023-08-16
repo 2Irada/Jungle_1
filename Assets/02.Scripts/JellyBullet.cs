@@ -45,6 +45,7 @@ public class JellyBullet : MonoBehaviour
         {
             //¡©∏Æ ¿·Ωƒ ¿Ã∆Â∆Æ Ω««‡
             FindObjectOfType<JellyEffect>().JellyEffectOn(_target, transform.position);
+            _target.GetComponent<ColoredObject>().EyeballEaten();
             gameObject.SetActive(false);
 
         }

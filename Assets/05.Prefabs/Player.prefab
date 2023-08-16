@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 5931681585521309736}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.9, y: -0.61, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5931681587374403345}
@@ -123,6 +123,7 @@ Transform:
   - {fileID: 5931681585970012532}
   - {fileID: 5931681585588892956}
   - {fileID: 5931681587135599308}
+  - {fileID: 1781807261254365864}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -231,6 +232,7 @@ MonoBehaviour:
   effectObject: {fileID: 0}
   jellyEffectFront: {fileID: 0}
   jellyEffectBack: {fileID: 0}
+  jellyEyeBlinkObject: {fileID: 1781807261254364503}
 --- !u!1 &5931681585588892931
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,7 +1901,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2496,6 +2498,85 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &953443810587070506
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5931681585521309739}
+    m_Modifications:
+    - target: {fileID: 1549537732405060226, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549537732405060226, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549537732405060226, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549537732405060226, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.424
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549537732405060226, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.609
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549537732405060226, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549537732405060226, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549537732405060226, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549537732405060226, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549537732405060226, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549537732405060226, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549537732405060226, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549537732405060226, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549537732405067133, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+      propertyPath: m_Name
+      value: JellyEyeBlinkEffect_for_platforms
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549537732405067133, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+--- !u!1 &1781807261254364503 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1549537732405067133, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+  m_PrefabInstance: {fileID: 953443810587070506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1781807261254365864 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1549537732405060226, guid: 09e3674771aa3bd48b13ab9cc3bba272, type: 3}
+  m_PrefabInstance: {fileID: 953443810587070506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5931681585910864236
 PrefabInstance:
   m_ObjectHideFlags: 0

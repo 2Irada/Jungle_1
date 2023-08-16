@@ -80,6 +80,17 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Spike"))
+        {
+            ColoredObject _co = collision.gameObject.GetComponent<ColoredObject>();
+            if (_co.currentColoring != ColorManager.instance.mainColoring)
+            {
+                GameOver();
+            }
+        }
+    }
 
     void OnCollisionExit2D(Collision2D collision)
     { // check to player Fall, use OnCollisionExit
@@ -110,10 +121,6 @@ public class PlayerController : MonoBehaviour
                 yield return new WaitForSeconds(3);
                 other.gameObject.SetActive(true);
             }
-        }
-        else if (other.CompareTag("Spike"))
-        {
-            GameOver();
         }
     }
 
