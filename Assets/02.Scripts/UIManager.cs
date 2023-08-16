@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour
         _isFadeIn = false;
     }
 
-    IEnumerator StartIngKu()
+    public IEnumerator StartIngKu()
     {
         plusIngku = true;
         deathCount++;
