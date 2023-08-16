@@ -491,11 +491,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928002296}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bbe565cb1d7681438ca323fe9fe5799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isGameEnd: 0
+  imageList: []
+  gameOverBG: {fileID: 0}
+  pressSpace: {fileID: 0}
+  ingKu: {fileID: 0}
 --- !u!4 &928002298
 Transform:
   m_ObjectHideFlags: 0
@@ -1385,7 +1390,7 @@ MonoBehaviour:
   blue: {r: 0.43482354, g: 0.47656292, b: 0.90588236, a: 1}
   blackHighlight: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
   redHighlight: {r: 0.90588236, g: 0, b: 0, a: 1}
-  greenHighlight: {r: 0.11087445, g: 0.674, b: 0, a: 1}
+  greenHighlight: {r: 0.085541114, g: 0.52, b: 0, a: 1}
   blueHighlight: {r: 0, g: 0.08026802, b: 0.90588236, a: 1}
 --- !u!4 &1280900965
 Transform:
