@@ -13,12 +13,14 @@ public class UIManager : MonoBehaviour
 
     public Image[] imageList;
 
+    public GameObject GameOver;
     public GameObject gameOverBG;
     public TextMeshProUGUI pressSpace;
     public TextMeshProUGUI ingKu;
     private bool _isFadeIn;
     private bool plusIngku;
     public static int deathCount;
+
 
     void Awake()
     {
@@ -45,13 +47,9 @@ public class UIManager : MonoBehaviour
         if (_isGameEnd && !_isFadeIn) StartCoroutine(StartFadeIn());
         else StartCoroutine(StartFadeOut());
 
-        if (_isGameEnd && Input.GetKeyDown(KeyCode.Space) && !plusIngku)
+        if (_isGameEnd && Input.GetKeyDown(KeyCode.Space))
         {
             StopAllCoroutines();
-
-            gameOverBG.SetActive(false);
-
-            
             StartCoroutine(StartIngKu());            
         }
     }
@@ -72,16 +70,22 @@ public class UIManager : MonoBehaviour
 
     public IEnumerator StartIngKu()
     {
-        plusIngku = true;
-        deathCount++;
-        string forIngKu = ingKu.text;
-        for (int i = 1; i < deathCount; i++)
+        if(!plusIngku)
         {
-            forIngKu += "¤»";
-        }
-        ingKu.text = forIngKu;
-        ingKu.color = new Color(255, 255, 255, 255);
+            if (!GameOver.activeSelf) GameOver.SetActive(true);
 
+            gameOverBG.SetActive(false);
+
+            plusIngku = true;
+            deathCount++;
+            string forIngKu = ingKu.text;
+            for (int i = 1; i < deathCount; i++)
+            {
+                forIngKu += "¤»";
+            }
+            ingKu.text = forIngKu;
+            ingKu.color = new Color(255, 255, 255, 255);          
+        }
         yield return new WaitForSeconds(2.0f);
         plusIngku = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
