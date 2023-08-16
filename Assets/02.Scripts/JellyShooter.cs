@@ -35,7 +35,6 @@ public class JellyShooter : MonoBehaviour
                     ColoredObject _obj = _hit.collider.GetComponent<ColoredObject>();
                     if (_obj != null)
                     {
-                        print(canShoot);
                         if (canShoot) ShootJelly(_obj.transform);
                     }
                 }
