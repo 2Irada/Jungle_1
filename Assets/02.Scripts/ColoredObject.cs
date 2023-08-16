@@ -5,7 +5,7 @@ using UnityEngine;
 public class ColoredObject : MonoBehaviour
 {
     public Coloring objectColoring = new Coloring();
-    public Coloring currentColoring = new Coloring();
+    [HideInInspector] public Coloring currentColoring = new Coloring();
     public GameObject eyeballObject;
     public bool startAsEyeball;
     [HideInInspector] public bool isEyeball;
