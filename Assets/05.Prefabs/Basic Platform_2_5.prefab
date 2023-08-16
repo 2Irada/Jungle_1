@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 24745691}
   - component: {fileID: 24745692}
   m_Layer: 3
-  m_Name: Basic Platform
+  m_Name: Basic Platform_2_5
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,9 +30,10 @@ Transform:
   m_GameObject: {fileID: 8248786375255899369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.622437, y: -0.19317538, z: 0}
-  m_LocalScale: {x: 3.5, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 144101585969445660}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9056604, g: 0.28622285, b: 0.28622285, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,7 +102,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectColoring: 2
-  dashedLineMaterial: {fileID: 0}
+  eyeballObject: {fileID: 0}
+  startAsEyeball: 1
+  isEyeball: 0
 --- !u!61 &8248786375255899373
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -252,3 +255,81 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 1
+--- !u!1001 &961549738153824990
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8248786375255899372}
+    m_Modifications:
+    - target: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.028
+      objectReference: {fileID: 0}
+    - target: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3713699017039640393, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+      propertyPath: m_Name
+      value: SwapPlatformEye
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+--- !u!4 &144101585969445660 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+  m_PrefabInstance: {fileID: 961549738153824990}
+  m_PrefabAsset: {fileID: 0}
