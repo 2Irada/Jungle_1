@@ -188,14 +188,13 @@ MonoBehaviour:
   platformLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  groundChecker: {fileID: 5931681585521309737}
+  groundChecker: {fileID: 5931681587374403346}
   fdt: 0
   playerSpeed: 6
   isJump: 0
   jumpHeight: 3
   maxJump: 1
   jumpCount: 0
-  gameOverCamera: {fileID: 0}
   gameOverObj: {fileID: 0}
 --- !u!114 &5931681585521309733
 MonoBehaviour:
@@ -213,6 +212,7 @@ MonoBehaviour:
   jellyBullet: {fileID: 0}
   slimeHeadGraphic: {fileID: 5931681586675154326}
   jellyColoring: 1
+  jelliedObject: {fileID: 0}
   canShoot: 0
   canRetrieve: 0
 --- !u!114 &5931681585521309734

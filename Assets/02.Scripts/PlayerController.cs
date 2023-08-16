@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int jumpCount;
     #endregion
 
-    [SerializeField] private Camera gameOverCamera;
     [SerializeField] private GameObject gameOverObj;
 
     #region MonoBehaviour Method
@@ -38,7 +37,6 @@ public class PlayerController : MonoBehaviour
     {
         jumpCount = 0;
         rigid = GetComponent<Rigidbody2D>();
-        jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics2D.gravity.y * rigid.gravityScale));
     }
 
     // Update is called once per frame
@@ -67,6 +65,7 @@ public class PlayerController : MonoBehaviour
         {
             ColorManager.instance.AutoSwitchMainColoring();
             rigid.velocity = Vector2.zero;
+            jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics2D.gravity.y * rigid.gravityScale));
             rigid.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             isJump = true;
         }
@@ -81,6 +80,18 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Spike"))
+        {
+            ColoredObject _co = collision.gameObject.GetComponent<ColoredObject>();
+            if (_co.currentColoring != ColorManager.instance.mainColoring)
+            {
+                GameOver();
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Spike"))
         {
@@ -160,7 +171,6 @@ public class PlayerController : MonoBehaviour
 
         isGameEnd = true;
         UIManager.instance._isGameEnd = true;
-        gameOverCamera.gameObject.SetActive(true);
         gameOverObj.SetActive(true);
     }
 }
