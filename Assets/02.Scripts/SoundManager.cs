@@ -34,8 +34,8 @@ public class SoundManager : MonoBehaviour
         playSoundName = new string[audioSourceEffects.Length];
 
         // 배경음 재생
-        PlayBGM("BGM_1");
-        audioSourceBGM.loop = true;
+        // PlayBGM("BGM_1");
+        // audioSourceBGM.loop = true;
     }
 
     // 효과음 재생 함수
