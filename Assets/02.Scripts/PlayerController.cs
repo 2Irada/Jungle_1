@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
         float extraHeightText = .2f;
         RaycastHit2D rayCastHit = Physics2D.Raycast(groundChecker.bounds.center, Vector2.down, groundChecker.bounds.extents.y + extraHeightText, platformLayerMask);
 
-        if (rayCastHit.collider != null)
+        if (rayCastHit.collider != null && !rayCastHit.collider.isTrigger)
         {
             fdt = 0f;
             jumpCount = 0;

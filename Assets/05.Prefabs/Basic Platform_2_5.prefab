@@ -101,7 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5086d60f51520754b812cf6c2a407322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectColoring: 2
+  objectColoring: 1
+  currentColoring: 0
   eyeballObject: {fileID: 4526585948906595735}
   startAsEyeball: 1
   isEyeball: 0
