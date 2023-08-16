@@ -12,7 +12,7 @@ public class JellyShooter : MonoBehaviour
 
     public Coloring jellyColoring = Coloring.Red;
 
-    private ColoredObject jelliedObject = null;
+    [HideInInspector] public ColoredObject jelliedObject = null;
     public bool canShoot = true;
     public bool canRetrieve = false;
 
