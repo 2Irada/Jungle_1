@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Item
+  - Jelly
+  - Spike
   layers:
   - Default
   - TransparentFX
