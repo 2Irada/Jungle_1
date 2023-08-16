@@ -17,8 +17,9 @@ public class JellyEffect : MonoBehaviour
     private float _maxEffectScale = 3.5f;
 
 
-    private void Awake()
+    private void Start()
     {
+        effectObject = GameObject.Find("JellyEffect");
         effectObject.transform.localScale = Vector3.zero;
         _jellyShooter = GetComponent<JellyShooter>();
     }

@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Ground
   - Item
-  - Jelly
   layers:
   - Default
   - TransparentFX
@@ -41,9 +40,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: UI
-    uniqueID: 3427587897
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
