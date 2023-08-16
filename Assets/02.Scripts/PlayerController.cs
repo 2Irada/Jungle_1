@@ -43,10 +43,7 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        // Sound Test 스크립트. 사용 후 삭제
-        // testSound();
-
+    {        
         isGround = isGrounded();
 
         if (!isGround) fdt += Time.deltaTime;
@@ -57,25 +54,6 @@ public class PlayerController : MonoBehaviour
 
     }
     #endregion
-
-    /*
-    // Sound Test 스크립트. 사용 후 삭제
-    public void testSound()
-    {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            SoundManager.instance.PlaySE("Jelly_Shoot_01");
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            SoundManager.instance.PlaySE("SavePoint_01");
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-
-        }
-    }
-    */
 
     void PlayerAct()
     {   // check Player Act     
