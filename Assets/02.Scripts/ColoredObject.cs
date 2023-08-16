@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.iOS.Extensions.Common;
 using UnityEngine;
 
 public class ColoredObject : MonoBehaviour
 {
     public Coloring objectColoring = new Coloring();
-    public Material dashedLineMaterial;
+    public GameObject eyeballObject;
+    public bool startAsEyeball;
+    [HideInInspector] public bool isEyeball;
 
     private bool _isJellied = false;
     private LineRenderer _lr;
-
+    private List<SpriteRenderer> _eyeballRenderers = new List<SpriteRenderer>();
 
     private void Awake()
     {
@@ -18,8 +21,7 @@ public class ColoredObject : MonoBehaviour
     private void Start()
     {
         InitializeColoring();
-        //InitLineRenderer();
-        //ColorManager.instance.mainColoringChanged += UpdateColoringLogic;
+        InitEyeball();
     }
 
     private void OnEnable()
@@ -64,30 +66,36 @@ public class ColoredObject : MonoBehaviour
     /// </summary>
     void UpdateColoringLogic()
     {
-        Coloring currentColoring = objectColoring;
+        Coloring currentColoring = _isJellied? FindObjectOfType<JellyShooter>().jellyColoring : objectColoring;
 
-        if (ColorManager.instance.mainColoring != currentColoring)
+        if (ColorManager.instance.mainColoring != currentColoring) 
         {
             GetComponent<Collider2D>().enabled = true;
-            SetActiveLineRenderer(false);
-            //GetComponent<SpriteRenderer>().enabled = true;
+            if (_isJellied)
+            {
+                SetActiveLineRenderer(true);
+                GetComponent<SpriteRenderer>().enabled = false;
+            }
+            else
+            {
+                SetActiveLineRenderer(false);
+                GetComponent<SpriteRenderer>().enabled = true;
+            }
         }
         else
         {
             GetComponent<Collider2D>().enabled = false;
             SetActiveLineRenderer(true);
-            //GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<SpriteRenderer>().enabled = false;
         }
 
-        if (_isJellied) 
+        if (isEyeball)
         {
-            currentColoring = FindObjectOfType<JellyShooter>().jellyColoring;
-            GetComponent<SpriteRenderer>().enabled = false;
-            SetActiveLineRenderer(true);
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().enabled = true;
+            if (ColorManager.instance.mainColoring == currentColoring || _isJellied) //젤리 붙었거나 결론적으로 투명하거나 둘중 하나면 반투명
+            {
+                SetEyeballAlpha(0.5f);
+            }
+            else { SetEyeballAlpha(1.0f);}
         }
     }
 
@@ -96,5 +104,56 @@ public class ColoredObject : MonoBehaviour
         _lr.startColor = ColorManager.instance.GetHighlightColorByColoring(objectColoring);
         _lr.endColor = ColorManager.instance.GetHighlightColorByColoring(objectColoring);
         _lr.enabled = value;
+    }
+
+    private void InitEyeball()
+    {
+        eyeballObject.SetActive(true);
+        _eyeballRenderers.Clear();
+        _eyeballRenderers.AddRange(eyeballObject.GetComponentsInChildren<SpriteRenderer>());
+
+        if (startAsEyeball)
+        {
+            eyeballObject.SetActive(true);
+            isEyeball = true;
+        }
+        else 
+        {
+            eyeballObject.SetActive(false);
+            isEyeball = false;
+        }
+    }
+
+    public void EyeballEaten()
+    {
+        if (isEyeball == false) return;
+
+        //눈깔 그래픽 반투명 코루틴 시작
+        
+
+
+    }
+
+    public void JellyLeavesEyeball()
+    {
+        if (isEyeball == false) return;
+
+        isEyeball = false;
+        eyeballObject.SetActive(false);
+    }
+
+    IEnumerator StartEyeballFade()
+    {
+        //눈깔 페이드 아웃. (페이드 인은 필요 없을듯)
+        yield return null;
+    }
+
+    private void SetEyeballAlpha(float alpha)
+    {
+        for (int i = 0; i < _eyeballRenderers.Count; i++)
+        {
+            Color _color = _eyeballRenderers[i].color;
+            _eyeballRenderers[i].color = new Color(_color.r, _color.g, _color.b, alpha);
+        }
     }
 }

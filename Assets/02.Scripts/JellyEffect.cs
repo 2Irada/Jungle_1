@@ -12,6 +12,7 @@ public class JellyEffect : MonoBehaviour
     private SpriteMask _platformMask;
     private JellyShooter _jellyShooter;
     private IEnumerator _jellyEffectCoroutine;
+    private float _frontAlpha;
 
     //코드 내 지정 변수들
     private float _maxEffectScale = 3.5f;
@@ -21,6 +22,7 @@ public class JellyEffect : MonoBehaviour
     {
         effectObject.transform.localScale = Vector3.zero;
         _jellyShooter = GetComponent<JellyShooter>();
+        _frontAlpha = jellyEffectFront.color.a;
     }
 
     private void OnEnable()
@@ -39,8 +41,15 @@ public class JellyEffect : MonoBehaviour
     {
         //코루틴 시작. (안겹치게)
         UpdateJellyEffectVisibleness();
+
+        //색 맞추기
+        Color _newColor = ColorManager.instance.GetColorByColoring(_jellyShooter.jellyColoring);
+        jellyEffectBack.color = _newColor;
+        jellyEffectFront.color = new Color(_newColor.r, _newColor.g, _newColor.b, _frontAlpha);
+
         if (_jellyEffectCoroutine != null) StopCoroutine(_jellyEffectCoroutine);
         _jellyEffectCoroutine = StartJellifyCoroutine(targetPlatform, startingPoint);
+
         StartCoroutine(_jellyEffectCoroutine);
     }
 

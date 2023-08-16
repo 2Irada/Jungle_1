@@ -33,7 +33,7 @@ public class JellyShooter : MonoBehaviour
                 if (_hit.collider != null)
                 {
                     ColoredObject _obj = _hit.collider.GetComponent<ColoredObject>();
-                    if (_obj != null)
+                    if (_obj != null && _obj.isEyeball)
                     {
                         if (canShoot) ShootJelly(_obj.transform);
                     }
@@ -62,6 +62,13 @@ public class JellyShooter : MonoBehaviour
 
     private void RetriveJelly()
     {
+        if (jelliedObject.isEyeball)
+        {
+            jellyColoring = jelliedObject.objectColoring;
+            UpdateHeadColor();
+            jelliedObject.JellyLeavesEyeball();
+        }
+
         canRetrieve = false;
         jellyBullet.transform.position = jelliedObject.transform.position;
         jellyBullet.SetTarget(slimeHeadGraphic.transform, true);
@@ -78,6 +85,7 @@ public class JellyShooter : MonoBehaviour
         _col.isTrigger = _tempTrigger;
         Vector2 _direction = ((Vector2)slimeHeadGraphic.transform.position - _closestPoint).normalized;
         GetComponent<JellyEffect>().JellyEffectOff(_closestPoint + _direction * 0.3f);
+
     }
 
     private void UpdateHeadColor()
