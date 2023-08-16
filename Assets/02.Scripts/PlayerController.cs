@@ -111,6 +111,10 @@ public class PlayerController : MonoBehaviour
                 other.gameObject.SetActive(true);
             }
         }
+        else if (other.CompareTag("Spike"))
+        {
+            GameOver();
+        }
     }
 
     bool isGrounded()
@@ -143,5 +147,12 @@ public class PlayerController : MonoBehaviour
             gameOverCamera.gameObject.SetActive(true);
             gameOverObj.SetActive(true);
         }
+    }
+
+    void GameOver()
+    {
+        isGameEnd = true;
+        gameOverCamera.gameObject.SetActive(true);
+        gameOverObj.SetActive(true);
     }
 }
