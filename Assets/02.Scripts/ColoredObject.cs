@@ -13,6 +13,7 @@ public class ColoredObject : MonoBehaviour
     private bool _isJellied = false;
     private LineRenderer _lr;
     private List<SpriteRenderer> _eyeballRenderers = new List<SpriteRenderer>();
+    private bool _didEyeBallInit = false;
 
     private void Awake()
     {
@@ -22,7 +23,7 @@ public class ColoredObject : MonoBehaviour
     {
         GetComponent<Collider2D>().enabled = true;
         InitializeColoring();
-        InitEyeball();
+        if (_didEyeBallInit == false) InitEyeball();
     }
 
     private void OnEnable()
@@ -96,7 +97,10 @@ public class ColoredObject : MonoBehaviour
             {
                 SetEyeballAlpha(0.5f);
             }
-            else { SetEyeballAlpha(1.0f);}
+            else 
+            { 
+                SetEyeballAlpha(1.0f);
+            }
         }
     }
 
@@ -107,8 +111,9 @@ public class ColoredObject : MonoBehaviour
         _lr.enabled = value;
     }
 
-    private void InitEyeball()
+    public void InitEyeball()
     {
+        _didEyeBallInit = true;
         eyeballObject.SetActive(true);
         _eyeballRenderers.Clear();
         _eyeballRenderers.AddRange(eyeballObject.GetComponentsInChildren<SpriteRenderer>());
@@ -148,6 +153,9 @@ public class ColoredObject : MonoBehaviour
 
     private void SetEyeballAlpha(float alpha)
     {
+        _eyeballRenderers.Clear();
+        _eyeballRenderers.AddRange(eyeballObject.GetComponentsInChildren<SpriteRenderer>());
+
         for (int i = 0; i < _eyeballRenderers.Count; i++)
         {
             Color _color = _eyeballRenderers[i].color;

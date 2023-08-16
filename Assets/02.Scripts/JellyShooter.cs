@@ -64,8 +64,7 @@ public class JellyShooter : MonoBehaviour
     {
         if (jelliedObject.isEyeball)
         {
-            jellyColoring = jelliedObject.objectColoring;
-            UpdateHeadColor();
+            SetJellyColoring(jelliedObject.objectColoring);
             jelliedObject.JellyLeavesEyeball();
         }
 
@@ -104,5 +103,11 @@ public class JellyShooter : MonoBehaviour
     {
         jelliedObject.GetUnjellied();
         jelliedObject = null;
+    }
+
+    public void SetJellyColoring(Coloring coloring)
+    {
+        jellyColoring = coloring;
+        UpdateHeadColor();
     }
 }

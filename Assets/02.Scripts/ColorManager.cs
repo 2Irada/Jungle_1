@@ -5,8 +5,7 @@ using UnityEngine;
 public class ColorManager : MonoBehaviour
 {
     public static ColorManager instance;
-    [SerializeField]
-    public Coloring mainColoring = Coloring.Red;
+    [HideInInspector] public Coloring mainColoring = Coloring.Black;
     
     [Header("Colors")]
     public Color black;
@@ -25,11 +24,6 @@ public class ColorManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
-
-    private void Start()
-    {
-        SwitchMainColoring(Coloring.Red);
     }
 
     private void Update()
