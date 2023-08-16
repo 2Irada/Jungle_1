@@ -29,7 +29,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8248786375255899369, guid: 77ba6eb6d96ad84489cce1f3a53faac1, type: 3}
       propertyPath: m_Name
-      value: Basic Platform_3_5
+      value: Basic Platform_3_5 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248786375255899370, guid: 77ba6eb6d96ad84489cce1f3a53faac1, type: 3}
+      propertyPath: eyeballObject
+      value: 
+      objectReference: {fileID: 4298251253702452562}
+    - target: {fileID: 8248786375255899370, guid: 77ba6eb6d96ad84489cce1f3a53faac1, type: 3}
+      propertyPath: startAsEyeball
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8248786375255899372, guid: 77ba6eb6d96ad84489cce1f3a53faac1, type: 3}
       propertyPath: m_RootOrder
@@ -81,3 +89,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77ba6eb6d96ad84489cce1f3a53faac1, type: 3}
+--- !u!1 &4298251253702452562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4526585948906595735, guid: 77ba6eb6d96ad84489cce1f3a53faac1, type: 3}
+  m_PrefabInstance: {fileID: 394026819320660165}
+  m_PrefabAsset: {fileID: 0}

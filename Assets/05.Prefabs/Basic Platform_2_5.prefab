@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectColoring: 2
-  eyeballObject: {fileID: 0}
+  eyeballObject: {fileID: 4526585948906595735}
   startAsEyeball: 1
   isEyeball: 0
 --- !u!61 &8248786375255899373
@@ -331,5 +331,10 @@ PrefabInstance:
 --- !u!4 &144101585969445660 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 911961080895384002, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
+  m_PrefabInstance: {fileID: 961549738153824990}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4526585948906595735 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3713699017039640393, guid: 108f7afb19b20934da88c8b1853eb18c, type: 3}
   m_PrefabInstance: {fileID: 961549738153824990}
   m_PrefabAsset: {fileID: 0}
