@@ -23,7 +23,8 @@ public class SceneController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            ReloadScene();
+            UIManager.instance.StartCoroutine(UIManager.instance.StartIngKu());
+            //ReloadScene();
         }
         else if (Input.GetKeyDown(KeyCode.F11)) 
         {
@@ -99,7 +100,7 @@ public class SceneController : MonoBehaviour
 
     public void NextLevel()
     {
-        if (SceneManager.sceneCount - 1 > SceneManager.GetActiveScene().buildIndex)
+        if (SceneManager.sceneCountInBuildSettings - 1 > SceneManager.GetActiveScene().buildIndex)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
