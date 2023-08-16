@@ -5,20 +5,12 @@ using UnityEngine;
 public class ColoredObject : MonoBehaviour
 {
     public Coloring objectColoring = new Coloring();
-    public Material dashedLineMaterial;
 
     private bool _isJellied = false;
-    private LineRenderer _lr;
 
-
-    private void Awake()
-    {
-        _lr = GetComponent<LineRenderer>();
-    }
     private void Start()
     {
         InitializeColoring();
-        //InitLineRenderer();
         //ColorManager.instance.mainColoringChanged += UpdateColoringLogic;
     }
 
@@ -65,36 +57,25 @@ public class ColoredObject : MonoBehaviour
     void UpdateColoringLogic()
     {
         Coloring currentColoring = objectColoring;
-
+    if (_isJellied) currentColoring = FindObjectOfType<JellyShooter>().jellyColoring;
         if (ColorManager.instance.mainColoring != currentColoring)
         {
             GetComponent<Collider2D>().enabled = true;
-            SetActiveLineRenderer(false);
             //GetComponent<SpriteRenderer>().enabled = true;
         }
         else
         {
             GetComponent<Collider2D>().enabled = false;
-            SetActiveLineRenderer(true);
             //GetComponent<SpriteRenderer>().enabled = false;
-        }
-
-        if (_isJellied) 
-        {
-            currentColoring = FindObjectOfType<JellyShooter>().jellyColoring;
-            GetComponent<SpriteRenderer>().enabled = false;
-            SetActiveLineRenderer(true);
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 
-    private void SetActiveLineRenderer(bool value)
+    private void SetActiveAllSpriteRenderers(bool value)
     {
-        _lr.startColor = ColorManager.instance.GetHighlightColorByColoring(objectColoring);
-        _lr.endColor = ColorManager.instance.GetHighlightColorByColoring(objectColoring);
-        _lr.enabled = value;
+        List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
+        spriteRenderers.Add(GetComponent<SpriteRenderer>());
+        spriteRenderers.AddRange(GetComponentsInChildren<SpriteRenderer>());
+
+        foreach (SpriteRenderer spriteRenderer in spriteRenderers) spriteRenderer.enabled = value;
     }
 }
