@@ -16,7 +16,6 @@ public class SavePoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            print("Save");
             SceneController.instance.Save(transform.position);
             gameObject.SetActive(false);
         }

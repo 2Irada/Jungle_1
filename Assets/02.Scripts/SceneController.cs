@@ -96,4 +96,12 @@ public class SceneController : MonoBehaviour
         data.sceneIndex = -1;
         data.deathCount = 0;
     }
+
+    public void NextLevel()
+    {
+        if (SceneManager.sceneCount - 1 > SceneManager.GetActiveScene().buildIndex)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
 }
