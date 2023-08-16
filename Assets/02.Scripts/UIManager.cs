@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour
         plusIngku = true;
         deathCount++;
         string forIngKu = ingKu.text;
-        for (int i = 0; i < deathCount; i++)
+        for (int i = 1; i < deathCount; i++)
         {
             forIngKu += "¤»";
         }
