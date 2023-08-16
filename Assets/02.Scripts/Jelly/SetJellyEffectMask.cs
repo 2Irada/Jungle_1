@@ -10,11 +10,14 @@ public class SetJellyEffectMask : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject _temp = new GameObject();
+        SpriteMask _mask = _temp.AddComponent<SpriteMask>();
 
-            GameObject temp = Instantiate(prefabMask, transform.position, Quaternion.identity);
-            temp.name = "Platform_Mask";
-            temp.transform.localScale = new Vector3(transform.localScale.x + margin, transform.localScale.y + margin, transform.localScale.z);
-            temp.SetActive(false);
-            temp.transform.parent = this.transform;
+        _mask.sprite = GetComponent<SpriteRenderer>().sprite;
+        _mask.enabled = false;
+        _temp.transform.position = transform.position;
+        _temp.name = "Platform_Mask";
+        _temp.transform.localScale = new Vector3(transform.localScale.x + margin, transform.localScale.y + margin, transform.localScale.z);
+        _temp.transform.parent = this.transform;
     }
 }

@@ -41,12 +41,14 @@ public class ColoredObject : MonoBehaviour
     public void GetJellied(Coloring jellyColoring)
     {
         _isJellied = true;
+        UpdateColoringLogic();
     }
 
     public void GetUnjellied()
     {
         //필요: 젤리 없어지는 시각 효과
         _isJellied = false;
+        UpdateColoringLogic();
     }
 
     /// <summary>
@@ -59,12 +61,21 @@ public class ColoredObject : MonoBehaviour
         if (ColorManager.instance.mainColoring != currentColoring)
         {
             GetComponent<Collider2D>().enabled = true;
-            GetComponent<SpriteRenderer>().enabled = true;
+            //GetComponent<SpriteRenderer>().enabled = true;
         }
         else
         {
             GetComponent<Collider2D>().enabled = false;
-            GetComponent<SpriteRenderer>().enabled = false;
+            //GetComponent<SpriteRenderer>().enabled = false;
         }
+    }
+
+    private void SetActiveAllSpriteRenderers(bool value)
+    {
+        List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
+        spriteRenderers.Add(GetComponent<SpriteRenderer>());
+        spriteRenderers.AddRange(GetComponentsInChildren<SpriteRenderer>());
+
+        foreach (SpriteRenderer spriteRenderer in spriteRenderers) spriteRenderer.enabled = value;
     }
 }

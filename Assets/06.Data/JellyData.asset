@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: JellyData
   m_EditorClassIdentifier: 
   aimRadius: 5
-  jellySpreadTime: 0.2
-  jellyBulletSpeed: 10
+  jellySpreadTime: 0.15
+  jellyBulletSpeed: 50
