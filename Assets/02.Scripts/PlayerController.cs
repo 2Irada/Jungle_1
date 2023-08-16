@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     #region GameEndVariable
     private bool isGameEnd;
     [SerializeField] private float fdt;
-    [SerializeField] private float gameEndFdt;
+    private float gameEndFdt = 2.5f;
     #endregion
    
     private Rigidbody2D rigid;
@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!isGround)
             {
+                fdt = 0f;
                 isJump = false;
                 jumpCount = 0;
             }
@@ -119,7 +120,7 @@ public class PlayerController : MonoBehaviour
 
         if (rayCastHit.collider != null)
         {
-            fdt = 0;
+            fdt = 0f;
             jumpCount = 0;
         }
         else
