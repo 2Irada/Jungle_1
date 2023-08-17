@@ -23,8 +23,8 @@ public class SceneController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            UIManager.instance.StartCoroutine(UIManager.instance.StartIngKu());
-            //ReloadScene();
+            //UIManager.instance.StartCoroutine(UIManager.instance.StartIngKu());
+            ReloadScene();
         }
         else if (Input.GetKeyDown(KeyCode.F11)) 
         {
@@ -66,6 +66,8 @@ public class SceneController : MonoBehaviour
 
     void Load()
     {
+        if (data.jellyColoring == Coloring.Black) data.jellyColoring = Coloring.Red;
+        if (data.mainColoring == Coloring.Black) data.mainColoring = Coloring.Red;
         if (data.sceneIndex != SceneManager.GetActiveScene().buildIndex) return;
 
         JellyShooter _js = FindObjectOfType<JellyShooter>();

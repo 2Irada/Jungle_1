@@ -51,6 +51,17 @@ public class PlayerController : MonoBehaviour
         if (!isGameEnd) PlayerAct();
 
     }
+
+    private void FixedUpdate()
+    {
+        if (rigid != null)
+        {
+            if (rigid.velocity.y < -15)
+            {
+                rigid.velocity = new Vector3(rigid.velocity.x, -15,0f);
+            }
+        }
+    }
     #endregion
 
     void PlayerAct()
