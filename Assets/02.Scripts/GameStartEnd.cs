@@ -14,12 +14,12 @@ public class GameStartEnd : MonoBehaviour
     IEnumerator Ending()
     {
         yield return new WaitForSeconds(5.0f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(0);
     }
 
     public void loadNextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Stage1");
     }
 
     // Update is called once per frame
