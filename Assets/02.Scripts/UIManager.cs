@@ -47,10 +47,10 @@ public class UIManager : MonoBehaviour
         if (_isGameEnd && !_isFadeIn) StartCoroutine(StartFadeIn());
         else StartCoroutine(StartFadeOut());
 
-        if (_isGameEnd && Input.GetKeyDown(KeyCode.Space))
+        if (_isGameEnd && Input.GetKeyDown(KeyCode.Space) && !plusIngku)
         {
             StopAllCoroutines();
-            StartCoroutine(StartIngKu());            
+            StartCoroutine(StartIngKu());
         }
     }
 
@@ -70,22 +70,21 @@ public class UIManager : MonoBehaviour
 
     public IEnumerator StartIngKu()
     {
-        if(!plusIngku)
+
+        if (!GameOver.activeSelf) GameOver.SetActive(true);
+
+        gameOverBG.SetActive(false);
+
+        plusIngku = true;
+        deathCount++;
+        string forIngKu = ingKu.text;
+        for (int i = 1; i < deathCount; i++)
         {
-            if (!GameOver.activeSelf) GameOver.SetActive(true);
-
-            gameOverBG.SetActive(false);
-
-            plusIngku = true;
-            deathCount++;
-            string forIngKu = ingKu.text;
-            for (int i = 1; i < deathCount; i++)
-            {
-                forIngKu += "¤»";
-            }
-            ingKu.text = forIngKu;
-            ingKu.color = new Color(255, 255, 255, 255);          
+            forIngKu += "¤»";
         }
+        ingKu.text = forIngKu;
+        ingKu.color = new Color(255, 255, 255, 255);
+
         yield return new WaitForSeconds(2.0f);
         plusIngku = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
