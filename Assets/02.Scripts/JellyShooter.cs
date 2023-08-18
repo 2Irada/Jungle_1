@@ -39,11 +39,8 @@ public class JellyShooter : MonoBehaviour
                     }
                 }
             }
-        }
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (jelliedObject != null)
+            else if(jelliedObject != null)
             {
                 if (canRetrieve) RetriveJelly();
             }
