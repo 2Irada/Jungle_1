@@ -9,16 +9,24 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    private Canvas canvas;
+
+    #region UI Prefab
+    // [SerializeField] private GameObject ColorInfoChildPref;    
+    [SerializeField] private GameObject GameOverPref;
+    [SerializeField] private GameObject XBtnPref;
+    [SerializeField] private int maxColorCount;
+    #endregion
+
     public bool _isGameEnd;
 
-    public Image[] imageList;
+    [SerializeField] private Image[] ColorList;
 
-    public GameObject GameOver;
-    public TextMeshProUGUI ingKu;
+    public GameObject gameOver;
+    private TextMeshProUGUI ingKu;
 
     private bool plusIngku;
     public static int deathCount;
-
 
     void Awake()
     {
@@ -27,15 +35,17 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        imageList[0].color = ColorManager.instance.red;
-        imageList[1].color = ColorManager.instance.green;
-        imageList[2].color = ColorManager.instance.blue;
+        canvas = GetComponent<Canvas>();
+        ColorList[0].color = ColorManager.instance.red;
+        ColorList[1].color = ColorManager.instance.green;
+        ColorList[2].color = ColorManager.instance.blue;
+
+        UIInfoCreate();       
     }
 
     private void OnEnable()
     {
-        plusIngku = false;
-        ingKu.color = new Color(255, 255, 255, 0);
+        plusIngku = false;       
     }
 
     private void Update()
@@ -47,10 +57,54 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    
+
+    void UIInfoCreate()
+    {    
+       // ColorInfoCreate();
+        SpawnXBtn();
+        GameOverCerate();
+    }
+
+    /*
+    void ColorInfoCreate()
+    {
+        for (int i = 0; i < maxColorCount; i++)
+        {
+            GameObject colorInfo = Instantiate(ColorInfoChildPref, canvas.transform);
+
+            TextMeshProUGUI objText = GetComponentInChildren<TextMeshProUGUI>();
+
+            Image objColor = colorInfo.GetComponent<Image>();
+            objColor.color = Color.red;
+            renderer = objColor.GetComponent<MeshRenderer>();
+            Vector2 colorInfoSize = renderer.bounds.size;
+
+            colorInfo.transform.position = new Vector2(colorInfo.transform.position.x + (colorInfoSize.x * i) + 5, colorInfo.transform.position.y);
+
+            objText.text = (i+1).ToString();
+        }
+    }
+    */
+    void GameOverCerate()
+    { // gameOver Prefab에 있는 TMPro를 가져옴. 만약 TMPro가 추가된다면 코드 수정해야 함
+        gameOver = Instantiate(GameOverPref, canvas.transform);
+        ingKu = gameOver.GetComponentInChildren<TextMeshProUGUI>();
+        ingKu.color = new Color(255, 255, 255, 0);
+        gameOver.SetActive(false);
+    }
+
+    void SpawnXBtn()
+    {
+        Instantiate(XBtnPref, canvas.transform);
+        Button XButtonEvent = XBtnPref.GetComponent<Button>();
+        XButtonEvent.onClick.AddListener(ExitGame);
+    }
+
     public IEnumerator StartIngKu()
     {
         SceneController.instance.isRestart = true;
-        if (!GameOver.activeSelf) GameOver.SetActive(true);
+        if (!gameOver.activeSelf) gameOver.SetActive(true);
 
         plusIngku = true;
         deathCount++;
@@ -72,6 +126,8 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    
 
     public void ExitGame()
     {
