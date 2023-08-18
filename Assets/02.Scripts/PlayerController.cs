@@ -90,30 +90,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Spike"))
-        {
-            ColoredObject _co = collision.gameObject.GetComponent<ColoredObject>();
-            if (_co.currentColoring != ColorManager.instance.mainColoring)
-            {
-                GameOver();
-            }
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Spike"))
-        {
-            ColoredObject _co = collision.gameObject.GetComponent<ColoredObject>();
-            if (_co.currentColoring != ColorManager.instance.mainColoring)
-            {
-                GameOver();
-            }
-        }
-    }
-
     void OnCollisionExit2D(Collision2D collision)
     { // check to player Fall, use OnCollisionExit
         if (collision.gameObject.CompareTag("Ground"))
@@ -144,6 +120,16 @@ public class PlayerController : MonoBehaviour
                 other.gameObject.SetActive(true);
             }
         }
+
+        if (other.gameObject.CompareTag("Spike"))
+        {
+            ColoredObject _co = other.gameObject.GetComponent<ColoredObject>();
+            if (_co.isSpikeActive)
+            {
+                GameOver();
+            }
+        }
+
     }
 
     bool isGrounded()
