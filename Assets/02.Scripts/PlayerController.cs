@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D groundChecker;
 
     #region GameEndVariable
+    private bool isDead;
     private bool isGameEnd;
     [SerializeField] private float fdt;
     private float gameEndFdt = 2.5f;
@@ -36,15 +38,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject gameOverObj;
 
     #region MonoBehaviour Method
-    // Start is called before the first frame update
+
     void Start()
     {
         jumpCount = 0;
         rigid = GetComponent<Rigidbody2D>();
         playerXScale = transform.localScale.x;
+        isDead = false;
     }
 
-    // Update is called once per frame
     void Update()
     {        
         isGround = isGrounded();
@@ -53,8 +55,7 @@ public class PlayerController : MonoBehaviour
         
         CheckGameOver();
       
-        if (!isGameEnd) PlayerAct();
-
+        if (!isDead) PlayerAct();
     }
 
     private void FixedUpdate()
@@ -140,7 +141,7 @@ public class PlayerController : MonoBehaviour
             ColoredObject _co = other.gameObject.GetComponent<ColoredObject>();
             if (_co.isSpikeActive)
             {
-                GameOver();
+                if (isDead == false) StartCoroutine(DeathCoroutine());
             }
         }
 
@@ -174,6 +175,37 @@ public class PlayerController : MonoBehaviour
         {
             GameOver();
         }
+    }
+
+    IEnumerator DeathCoroutine()
+    {
+        isDead = true;
+        DeathEffect();
+        yield return new WaitForSeconds(1f);
+        GameOver();
+    }
+
+    void DeathEffect()
+    {
+        float _minPower = 3f;
+        float _maxPower = 9f;
+        float _torquePower = 9f;
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Rigidbody2D _rb2d = transform.GetChild(i).AddComponent<Rigidbody2D>();
+
+            float _angle = Random.Range(0f, 360f);
+            Vector2 _dir = new Vector2(Mathf.Cos(Mathf.Deg2Rad * _angle), Mathf.Sin(Mathf.Deg2Rad * _angle));
+            float _power = Random.Range(_minPower, _maxPower);
+            _rb2d.AddForce(_dir * _power, ForceMode2D.Impulse);
+
+            int _rnd = Random.Range(0, 2);
+            _rb2d.AddTorque((_rnd * 2f - 1f) * _torquePower,ForceMode2D.Impulse);
+
+            if (transform.GetChild(i).GetComponent<Collider2D>() != null) transform.GetChild(i).GetComponent<Collider2D>().enabled = false;
+        }
+        transform.DetachChildren();
     }
 
     void GameOver()
