@@ -2328,6 +2328,7 @@ MonoBehaviour:
   - {fileID: 1445729025}
   - {fileID: 1550778732}
   - {fileID: 1921694557}
+  GameOver: {fileID: 660290130}
   gameOverBG: {fileID: 181807984}
   pressSpace: {fileID: 1241107822}
   ingKu: {fileID: 1958461739}
