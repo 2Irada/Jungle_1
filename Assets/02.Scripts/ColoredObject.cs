@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColoredObject : MonoBehaviour
+public class ColoredObject : MonoBehaviour, ISerializationCallbackReceiver
 {
     public Coloring objectColoring = new Coloring();
     [HideInInspector] public Coloring currentColoring = new Coloring();
@@ -42,6 +42,34 @@ public class ColoredObject : MonoBehaviour
     {
         ColorManager.instance.mainColoringChanged -= UpdateColoringLogic;
     }
+
+    public void OnBeforeSerialize()
+    {
+        SpriteRenderer _sr = GetComponent<SpriteRenderer>();
+        if (_sr != null)
+        {
+            GetComponent<SpriteRenderer>().color = FindObjectOfType<ColorManager>().GetColorByColoring(objectColoring);
+        }
+        eyeballObject.SetActive(true);
+        _eyeballRenderers.Clear();
+        _eyeballRenderers.AddRange(eyeballObject.GetComponentsInChildren<SpriteRenderer>());
+
+        if (startAsEyeball)
+        {
+            eyeballObject.SetActive(true);
+            isEyeball = true;
+        }
+        else
+        {
+            eyeballObject.SetActive(false);
+            isEyeball = false;
+        }
+    }
+
+    public void OnAfterDeserialize()
+    {
+    }
+
 
     /// <summary>
     /// 오브젝트의 원본 색을 설정.
@@ -176,4 +204,5 @@ public class ColoredObject : MonoBehaviour
             _eyeballRenderers[i].color = new Color(_color.r, _color.g, _color.b, alpha);
         }
     }
+
 }

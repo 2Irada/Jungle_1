@@ -29,7 +29,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8248786375255899369, guid: 77ba6eb6d96ad84489cce1f3a53faac1, type: 3}
       propertyPath: m_Name
-      value: Basic Platform_2_5
+      value: Basic Platform_5_5 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248786375255899371, guid: 77ba6eb6d96ad84489cce1f3a53faac1, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4366353
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248786375255899371, guid: 77ba6eb6d96ad84489cce1f3a53faac1, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4366353
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248786375255899371, guid: 77ba6eb6d96ad84489cce1f3a53faac1, type: 3}
+      propertyPath: m_Color.r
+      value: 0.90588236
       objectReference: {fileID: 0}
     - target: {fileID: 8248786375255899372, guid: 77ba6eb6d96ad84489cce1f3a53faac1, type: 3}
       propertyPath: m_RootOrder
