@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b65cf38a2555b94c859aa09691e92bd, type: 3}
   m_Name: SaveData
   m_EditorClassIdentifier: 
+  sceneIndex: 1
+  deathCount: 0
   respawnPoint: {x: 0, y: 0}
-  jellyColoring: 0
-  mainColoring: 0
+  jellyColoring: 3
+  mainColoring: 2
   isEyeBallList: 
