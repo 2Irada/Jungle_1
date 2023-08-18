@@ -9,19 +9,26 @@ public class ColoredObject : MonoBehaviour
     public GameObject eyeballObject;
     public bool startAsEyeball;
     [HideInInspector] public bool isEyeball;
+    [HideInInspector] public bool isSpikeActive;
 
     private bool _isJellied = false;
-    private LineRenderer _lr;
     private List<SpriteRenderer> _eyeballRenderers = new List<SpriteRenderer>();
     private bool _didEyeBallInit = false;
+    
+    //REFERENCES
+    private LineRenderer _lr;
+    private Collider2D _collider;
+    private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
         _lr = GetComponent<LineRenderer>();
+        _collider = GetComponent<Collider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void Start()
     {
-        GetComponent<Collider2D>().enabled = true;
+        _collider.enabled = true;
         InitializeColoring();
         if (_didEyeBallInit == false) InitEyeball();
     }
@@ -41,8 +48,7 @@ public class ColoredObject : MonoBehaviour
     /// </summary>
     private void InitializeColoring()
     {
-
-        GetComponent<SpriteRenderer>().color = ColorManager.instance.GetColorByColoring(objectColoring);
+        _spriteRenderer.color = ColorManager.instance.GetColorByColoring(objectColoring);
         UpdateColoringLogic();
     }
 
@@ -70,25 +76,40 @@ public class ColoredObject : MonoBehaviour
     {
         currentColoring = _isJellied? FindObjectOfType<JellyShooter>().jellyColoring : objectColoring;
 
-        if (ColorManager.instance.mainColoring != currentColoring) 
+        if (ColorManager.instance.mainColoring != currentColoring) //색 다를 때
         {
-            GetComponent<Collider2D>().isTrigger = false;
+            if (tag == "Spike")
+            {
+                isSpikeActive = true;
+            }
+            else if (tag == "Ground")
+            {
+                _collider.isTrigger = false;
+            }
             if (_isJellied)
             {
                 SetActiveLineRenderer(true);
-                GetComponent<SpriteRenderer>().enabled = false;
+                _spriteRenderer.enabled = false;
             }
             else
             {
                 SetActiveLineRenderer(false);
-                GetComponent<SpriteRenderer>().enabled = true;
+                _spriteRenderer.enabled = true;
             }
         }
-        else
+        else //색 같을때
         {
-            GetComponent<Collider2D>().isTrigger = true;
+            if (tag == "Spike")
+            {
+                isSpikeActive = false;
+            }
+            else if (tag == "Ground")
+            {
+                _collider.isTrigger = true;
+            }
             SetActiveLineRenderer(true);
-            GetComponent<SpriteRenderer>().enabled = false;
+            _spriteRenderer.enabled = false;
+            
         }
 
         if (isEyeball)
@@ -133,7 +154,6 @@ public class ColoredObject : MonoBehaviour
     public void EyeballEaten()
     {
         if (isEyeball == false) return;
-
         //눈깔 없애기
         eyeballObject.SetActive(false);
     }
@@ -143,12 +163,6 @@ public class ColoredObject : MonoBehaviour
         if (isEyeball == false) return;
 
         isEyeball = false;
-    }
-
-    IEnumerator StartEyeballFade()
-    {
-        //눈깔 페이드 아웃. (페이드 인은 필요 없을듯)
-        yield return null;
     }
 
     private void SetEyeballAlpha(float alpha)
