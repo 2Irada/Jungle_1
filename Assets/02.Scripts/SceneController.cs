@@ -27,8 +27,7 @@ public class SceneController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R) && !isRestart)
         {
-            UIManager.instance.StartCoroutine(UIManager.instance.StartIngKu());
-            
+            StartCoroutine(FindObjectOfType<PlayerController>().DeathCoroutine());
         }
         else if (Input.GetKeyDown(KeyCode.F11)) 
         {

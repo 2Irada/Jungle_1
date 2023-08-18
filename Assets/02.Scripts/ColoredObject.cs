@@ -45,10 +45,9 @@ public class ColoredObject : MonoBehaviour, ISerializationCallbackReceiver
 
     public void OnBeforeSerialize()
     {
-        SpriteRenderer _sr = GetComponent<SpriteRenderer>();
-        if (_sr != null)
+        if (TryGetComponent<SpriteRenderer>(out var _sr))
         {
-            GetComponent<SpriteRenderer>().color = FindObjectOfType<ColorManager>().GetColorByColoring(objectColoring);
+            _sr.color = FindObjectOfType<ColorManager>().GetColorByColoring(objectColoring);
         }
         eyeballObject.SetActive(true);
         _eyeballRenderers.Clear();

@@ -177,7 +177,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator DeathCoroutine()
+    public IEnumerator DeathCoroutine()
     {
         isDead = true;
         DeathEffect();
