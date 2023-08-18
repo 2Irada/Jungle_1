@@ -7,7 +7,7 @@ public class SavePoint : MonoBehaviour
 {
     private void Start()
     {
-        if (SceneController.instance.data.sceneIndex == SceneManager.GetActiveScene().buildIndex && SceneController.instance.data.respawnPoint == (Vector2) transform.position)
+        if (DataManager.instance.gameData.sceneIndex == SceneManager.GetActiveScene().buildIndex && DataManager.instance.gameData.respawnPoint == (Vector2) transform.position)
         {
             gameObject.SetActive(false);
         }
@@ -16,7 +16,8 @@ public class SavePoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SceneController.instance.Save(transform.position);
+            //SceneController.instance.Save(transform.position);
+            DataManager.instance.SaveGameData(transform.position);
             gameObject.SetActive(false);
         }
     }

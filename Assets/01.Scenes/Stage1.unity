@@ -1041,6 +1041,57 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8248786375255899372, guid: 77ba6eb6d96ad84489cce1f3a53faac1, type: 3}
   m_PrefabInstance: {fileID: 1410034499}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &417856939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 417856941}
+  - component: {fileID: 417856940}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &417856940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417856939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a75c09c817bb44ba1143d8fa8759d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameData:
+    sceneIndex: 0
+    deathCount: 0
+    respawnPoint: {x: 0, y: 0}
+    jellyColoring: 0
+    mainColoring: 0
+    isEyeBallList: 
+--- !u!4 &417856941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417856939}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 59.18574, y: -14.878079, z: 4.1298523}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &421455144 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3411657171336843699, guid: dfc0c40bb682d4546acf6414ad6fd9a2, type: 3}
