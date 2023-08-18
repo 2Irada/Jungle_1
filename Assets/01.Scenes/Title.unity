@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 286807894}
     - target: {fileID: 2435879392800327089, guid: e2748e6da02eb94438457b4b56e5b908, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: gameQuit
+      value: loadNextScene
       objectReference: {fileID: 0}
     - target: {fileID: 2435879392800327089, guid: e2748e6da02eb94438457b4b56e5b908, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
