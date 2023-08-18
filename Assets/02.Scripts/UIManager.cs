@@ -14,10 +14,8 @@ public class UIManager : MonoBehaviour
     public Image[] imageList;
 
     public GameObject GameOver;
-    public GameObject gameOverBG;
-    public TextMeshProUGUI pressSpace;
     public TextMeshProUGUI ingKu;
-    private bool _isFadeIn;
+
     private bool plusIngku;
     public static int deathCount;
 
@@ -37,43 +35,22 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         plusIngku = false;
-        pressSpace.color = new Color(255, 255, 255, 255);
         ingKu.color = new Color(255, 255, 255, 0);
-        _isFadeIn = true;
     }
 
     private void Update()
     {
-        if (_isGameEnd && !_isFadeIn) StartCoroutine(StartFadeIn());
-        else StartCoroutine(StartFadeOut());
-
-        if (_isGameEnd && Input.GetKeyDown(KeyCode.Space) && !plusIngku)
+        if (_isGameEnd && !plusIngku)
         {
             StopAllCoroutines();
             StartCoroutine(StartIngKu());
         }
     }
 
-    IEnumerator StartFadeIn()
-    {
-        yield return new WaitForSeconds(1.0f);
-        pressSpace.color = new Color(255, 255, 255, 255);
-        _isFadeIn = true;
-    }
-
-    IEnumerator StartFadeOut()
-    {
-        yield return new WaitForSeconds(1.0f);
-        pressSpace.color = new Color(255, 255, 255, 0);
-        _isFadeIn = false;
-    }
-
     public IEnumerator StartIngKu()
     {
         SceneController.instance.isRestart = true;
         if (!GameOver.activeSelf) GameOver.SetActive(true);
-
-        gameOverBG.SetActive(false);
 
         plusIngku = true;
         deathCount++;
