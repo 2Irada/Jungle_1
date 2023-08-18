@@ -35,8 +35,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int jumpCount;
     #endregion
 
-    [SerializeField] private GameObject gameOverObj;
-
     #region MonoBehaviour Method
 
     void Start()
@@ -214,6 +212,5 @@ public class PlayerController : MonoBehaviour
 
         isGameEnd = true;
         UIManager.instance._isGameEnd = true;
-        gameOverObj.SetActive(true);
     }
 }
