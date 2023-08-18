@@ -8,6 +8,8 @@ public class SceneController : MonoBehaviour
     public static SceneController instance;
     public SaveData data;
 
+    public bool isRestart;
+
     private void Awake()
     {
         instance = this;
@@ -17,14 +19,16 @@ public class SceneController : MonoBehaviour
     {
         if (data.sceneIndex != SceneManager.GetActiveScene().buildIndex) ColorManager.instance.SwitchMainColoring(Coloring.Red);
         else Load();
+
+        isRestart = false;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && !isRestart)
         {
-            //UIManager.instance.StartCoroutine(UIManager.instance.StartIngKu());
-            ReloadScene();
+            UIManager.instance.StartCoroutine(UIManager.instance.StartIngKu());
+            
         }
         else if (Input.GetKeyDown(KeyCode.F11)) 
         {

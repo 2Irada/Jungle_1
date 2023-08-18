@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour
 
     public IEnumerator StartIngKu()
     {
-
+        SceneController.instance.isRestart = true;
         if (!GameOver.activeSelf) GameOver.SetActive(true);
 
         gameOverBG.SetActive(false);
