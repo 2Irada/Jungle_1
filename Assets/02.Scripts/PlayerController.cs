@@ -16,8 +16,12 @@ public class PlayerController : MonoBehaviour
    
     private Rigidbody2D rigid;
 
+    #region PlayerMoveVariable
     private float horInput;
+    private Vector3 playerScale;
     [SerializeField] private float playerSpeed;
+    private float playerXScale;
+    #endregion
 
     #region PlayerJumpVariable
     private bool isGround;
@@ -37,6 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         jumpCount = 0;
         rigid = GetComponent<Rigidbody2D>();
+        playerXScale = transform.localScale.x;
     }
 
     // Update is called once per frame
@@ -84,10 +89,19 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMove()
     {
-        horInput = Input.GetAxis("Horizontal");
-
+        horInput = Input.GetAxisRaw("Horizontal");
+        
+        playerScale = transform.localScale;
+        if (horInput > 0)
+        {
+            playerScale.x = playerXScale;
+        }
+        else if(horInput < 0)
+        {
+            playerScale.x = -playerXScale;
+        }
+        transform.localScale = playerScale;
         transform.Translate(Vector2.right * Time.deltaTime * playerSpeed * horInput);
-
     }
 
     void OnCollisionExit2D(Collision2D collision)
