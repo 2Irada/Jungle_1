@@ -141,14 +141,14 @@ PrefabInstance:
     - target: {fileID: 2435879392800327089, guid: e2748e6da02eb94438457b4b56e5b908, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 672946740}
+      objectReference: {fileID: 286807894}
     - target: {fileID: 2435879392800327089, guid: e2748e6da02eb94438457b4b56e5b908, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: gameQuit
       objectReference: {fileID: 0}
     - target: {fileID: 2435879392800327089, guid: e2748e6da02eb94438457b4b56e5b908, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: EndGame, Assembly-CSharp
+      value: GameStartEnd, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2769685868549737240, guid: e2748e6da02eb94438457b4b56e5b908, type: 3}
       propertyPath: m_Name
@@ -273,6 +273,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3899236957207928103, guid: e2748e6da02eb94438457b4b56e5b908, type: 3}
   m_PrefabInstance: {fileID: 286807892}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &286807894 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7786883721807705522, guid: e2748e6da02eb94438457b4b56e5b908, type: 3}
+  m_PrefabInstance: {fileID: 286807892}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b271b65753517ec4ba5c13105f93564a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &672946735
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +296,6 @@ GameObject:
   - component: {fileID: 672946738}
   - component: {fileID: 672946737}
   - component: {fileID: 672946736}
-  - component: {fileID: 672946740}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -376,18 +386,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &672946740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 672946735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b271b65753517ec4ba5c13105f93564a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1728700752
 GameObject:
   m_ObjectHideFlags: 0
