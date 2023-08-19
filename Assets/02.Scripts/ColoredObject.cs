@@ -46,6 +46,7 @@ public class ColoredObject : MonoBehaviour, ISerializationCallbackReceiver
 
     public void OnBeforeSerialize()
     {
+#if UNITY_EDITOR
         if (PrefabUtility.GetPrefabInstanceStatus(this) == PrefabInstanceStatus.Connected)
         {
             if (TryGetComponent<SpriteRenderer>(out var _sr))
@@ -70,6 +71,7 @@ public class ColoredObject : MonoBehaviour, ISerializationCallbackReceiver
                 isEyeball = false;
             }
         }
+#endif
     }
 
     public void OnAfterDeserialize()
